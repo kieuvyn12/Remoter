@@ -97,6 +97,18 @@ export default class HelloWorldApp extends Component {
             accessibilityLabel="Click Here To See Cafes Near You"
           />
         )}
+
+        {this.state.cafes.length > 0 ? (
+          this.state.cafes.map(cafe => {
+            return (
+              <View key={cafe.id}>
+                <Text>{cafe.name}</Text>
+              </View>
+            );
+          })
+        ) : (
+          <Text>find some cafes</Text>
+        )}
       </View>
     );
   }
