@@ -91,9 +91,22 @@ export default class HelloWorldApp extends Component {
                 latitude: this.state.currentCoordinates.latitude,
                 longitude: this.state.currentCoordinates.longitude,
               }}
-              title={'name of cafe'}
+              title={'you are here!'}
               description={'your location'}
             />
+
+            {this.state.cafes.length > 0 &&
+              this.state.cafes.map(cafe => (
+                <MapView.Marker
+                  key={cafe.id}
+                  coordinate={{
+                    latitude: cafe.coordinates.latitude,
+                    longitude: cafe.coordinates.longitude,
+                  }}
+                  title={cafe.name}
+                  description={cafe.alias}
+                />
+              ))}
           </MapView>
         )}
 
