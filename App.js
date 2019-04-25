@@ -31,10 +31,7 @@ export default class HelloWorldApp extends Component {
           longitude: location.coords.longitude,
         },
       });
-      console.log('state: ', this.state);
-      console.log('currentCoordinates: ', this.state.currentCoordinates);
-      console.log('latitude: ', this.state.currentCoordinates.latitude);
-      console.log('longitude: ', this.state.currentCoordinates.longitude);
+
       this.setState({
         mapRegion: {
           latitude: location.coords.latitude,
