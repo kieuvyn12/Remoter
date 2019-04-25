@@ -99,7 +99,13 @@ export default class HelloWorldApp extends Component {
         )}
 
         {this.state.cafes.length > 0 ? (
-          <Text>cafes found</Text>
+          this.state.cafes.map(cafe => {
+            return (
+              <View key={cafe.id}>
+                <Text>{cafe.name}</Text>
+              </View>
+            );
+          })
         ) : (
           <Text>find some cafes</Text>
         )}
