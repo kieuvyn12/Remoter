@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Button } from 'react-native';
-import { Permissions, Location, MapView } from 'expo';
+import { Permissions, Location, MapView, Marker } from 'expo';
 import { YELPTOKEN } from './secrets';
 
 export default class HelloWorldApp extends Component {
@@ -85,7 +85,16 @@ export default class HelloWorldApp extends Component {
             style={{ alignSelf: 'stretch', height: 400 }}
             region={this.state.mapRegion}
             onRegionChange={this._handleMapRegionChange}
-          />
+          >
+            <MapView.Marker
+              coordinate={{
+                latitude: this.state.currentCoordinates.latitude,
+                longitude: this.state.currentCoordinates.longitude,
+              }}
+              title={'name of cafe'}
+              description={'your location'}
+            />
+          </MapView>
         )}
 
         <Text>Latitude: {this.state.currentCoordinates.latitude}</Text>
