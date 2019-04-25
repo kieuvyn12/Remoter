@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Button } from 'react-native';
-import { Permissions, Location, MapView, Marker } from 'expo';
+import { Permissions, Location, MapView } from 'expo';
 import { YELPTOKEN } from './secrets';
 
 export default class HelloWorldApp extends Component {
