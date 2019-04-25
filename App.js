@@ -69,7 +69,6 @@ export default class HelloWorldApp extends Component {
           />
         )}
 
-        <Text>Location: {this.state.locationResult}</Text>
         <Text>Latitude: {this.state.currentCoordinates.latitude}</Text>
         <Text>Longitude: {this.state.currentCoordinates.longitude}</Text>
       </View>
