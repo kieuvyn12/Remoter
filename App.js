@@ -85,7 +85,16 @@ export default class HelloWorldApp extends Component {
             style={{ alignSelf: 'stretch', height: 400 }}
             region={this.state.mapRegion}
             onRegionChange={this._handleMapRegionChange}
-          />
+          >
+            <MapView.Marker
+              coordinate={{
+                latitude: this.state.currentCoordinates.latitude,
+                longitude: this.state.currentCoordinates.longitude,
+              }}
+              title={'name of cafe'}
+              description={'your location'}
+            />
+          </MapView>
         )}
 
         <Text>Latitude: {this.state.currentCoordinates.latitude}</Text>
