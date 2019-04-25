@@ -9,6 +9,7 @@ export default class HelloWorldApp extends Component {
       hasLocationPermissions: false,
       locationResult: null,
       mapRegion: null,
+      currentCoordinates: {},
     };
   }
 
@@ -24,6 +25,16 @@ export default class HelloWorldApp extends Component {
         enableHighAccuracy: true,
       });
       this.setState({ locationResult: JSON.stringify(location) });
+      this.setState({
+        currentCoordinates: {
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+        },
+      });
+      console.log('state: ', this.state);
+      console.log('currentCoordinates: ', this.state.currentCoordinates);
+      console.log('latitude: ', this.state.currentCoordinates.latitude);
+      console.log('longitude: ', this.state.currentCoordinates.longitude);
       this.setState({
         mapRegion: {
           latitude: location.coords.latitude,
@@ -59,6 +70,8 @@ export default class HelloWorldApp extends Component {
         )}
 
         <Text>Location: {this.state.locationResult}</Text>
+        <Text>Latitude: {this.state.currentCoordinates.latitude}</Text>
+        <Text>Longitude: {this.state.currentCoordinates.longitude}</Text>
       </View>
     );
   }
