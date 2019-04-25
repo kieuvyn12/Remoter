@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Button } from 'react-native';
 import { Permissions, Location, MapView } from 'expo';
+import { YELPTOKEN } from './secrets';
 
 export default class HelloWorldApp extends Component {
   constructor(props) {
@@ -11,6 +12,7 @@ export default class HelloWorldApp extends Component {
       mapRegion: null,
       currentCoordinates: {},
     };
+    this.getCafesFromAPI = this.getCafesFromAPI.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +50,26 @@ export default class HelloWorldApp extends Component {
     }
   }
 
+  async getCafesFromAPI() {
+    try {
+      console.log(this.state.currentCoordinates.latitude);
+      let url = `https://api.yelp.com/v3/businesses/search?term="study"&categories="cafes"&latitude=${
+        this.state.currentCoordinates.latitude
+      }&longitude=${this.state.currentCoordinates.longitude}&limit=10`;
+      let response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          Authorization: YELPTOKEN,
+        },
+      });
+      let responseJson = await response.json();
+      console.log(responseJson);
+      return responseJson;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -68,6 +90,13 @@ export default class HelloWorldApp extends Component {
 
         <Text>Latitude: {this.state.currentCoordinates.latitude}</Text>
         <Text>Longitude: {this.state.currentCoordinates.longitude}</Text>
+        {this.state.currentCoordinates.latitude && (
+          <Button
+            onPress={this.getCafesFromAPI}
+            title="Click Here To See Cafes Near You"
+            accessibilityLabel="Learn more about this purple button"
+          />
+        )}
       </View>
     );
   }
