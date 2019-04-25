@@ -11,6 +11,7 @@ export default class HelloWorldApp extends Component {
       locationResult: null,
       mapRegion: null,
       currentCoordinates: {},
+      cafes: [],
     };
     this.getCafesFromAPI = this.getCafesFromAPI.bind(this);
   }
@@ -52,7 +53,6 @@ export default class HelloWorldApp extends Component {
 
   async getCafesFromAPI() {
     try {
-      console.log(this.state.currentCoordinates.latitude);
       let url = `https://api.yelp.com/v3/businesses/search?term="study"&categories="cafes"&latitude=${
         this.state.currentCoordinates.latitude
       }&longitude=${this.state.currentCoordinates.longitude}&limit=10`;
@@ -63,7 +63,7 @@ export default class HelloWorldApp extends Component {
         },
       });
       let responseJson = await response.json();
-      console.log(responseJson);
+      this.setState({ cafes: responseJson.businesses });
       return responseJson;
     } catch (error) {
       console.error(error);
@@ -94,7 +94,7 @@ export default class HelloWorldApp extends Component {
           <Button
             onPress={this.getCafesFromAPI}
             title="Click Here To See Cafes Near You"
-            accessibilityLabel="Learn more about this purple button"
+            accessibilityLabel="Click Here To See Cafes Near You"
           />
         )}
       </View>
