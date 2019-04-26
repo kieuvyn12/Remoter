@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, Header } from 'react-native-elements';
 import { Permissions, Location, MapView } from 'expo';
 import { YELPTOKEN } from './secrets';
 
@@ -74,6 +74,17 @@ export default class HelloWorldApp extends Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Header
+          statusBarProps={{ barStyle: 'light-content' }}
+          barStyle="light-content" // or directly
+          leftComponent={{ text: 'LEFT', style: { color: '#fff' } }}
+          centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
+          containerStyle={{
+            backgroundColor: '#3D6DCC',
+            justifyContent: 'space-around',
+          }}
+          rightComponent={{ icon: 'home', style: { color: '#fff' } }}
+        />
         <Text>Hello, world hi!</Text>
         {this.state.locationResult === null ? (
           <Text>Finding your current location...</Text>
