@@ -3,6 +3,7 @@ import { Text, View } from 'react-native';
 import { Button, Header } from 'react-native-elements';
 import { Permissions, Location, MapView } from 'expo';
 import { YELPTOKEN } from './secrets';
+import ListItem from './ListItem';
 
 export default class MainPage extends Component {
   constructor(props) {
@@ -20,10 +21,6 @@ export default class MainPage extends Component {
   componentDidMount() {
     this.getLocationAsync();
   }
-
-  onPress = () => {
-    this.props.navigation.push('SinglePage');
-  };
 
   async getLocationAsync() {
     const { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -143,13 +140,13 @@ export default class MainPage extends Component {
         )}
 
         {this.state.cafes.length > 0 ? (
-          this.state.cafes.map(cafe => {
-            return (
-              <View key={cafe.id}>
-                <Text onPress={this.onPress}>{cafe.name}</Text>
-              </View>
-            );
-          })
+          this.state.cafes.map(cafe => (
+            <ListItem
+              prop={cafe}
+              key={cafe.id}
+              navigate={this.props.navigation}
+            />
+          ))
         ) : (
           <Text>Click above to get productive!</Text>
         )}
