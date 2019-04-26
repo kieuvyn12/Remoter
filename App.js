@@ -3,8 +3,10 @@ import { Text, View } from 'react-native';
 import { Button, Header } from 'react-native-elements';
 import { Permissions, Location, MapView } from 'expo';
 import { YELPTOKEN } from './secrets';
+import HomeScreen from './HomeScreen';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-export default class HelloWorldApp extends Component {
+export class HelloWorldApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -96,7 +98,6 @@ export default class HelloWorldApp extends Component {
           <MapView
             style={{ alignSelf: 'stretch', height: 400 }}
             region={this.state.mapRegion}
-            onRegionChange={this._handleMapRegionChange}
           >
             <MapView.Marker
               coordinate={{
@@ -154,3 +155,12 @@ export default class HelloWorldApp extends Component {
     );
   }
 }
+
+const MainStackNavigator = createStackNavigator({
+  HomeScreen,
+  HelloWorldApp,
+});
+
+const NavigationApp = createAppContainer(MainStackNavigator);
+
+export default NavigationApp;
