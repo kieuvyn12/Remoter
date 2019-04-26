@@ -117,7 +117,12 @@ export default class HelloWorldApp extends Component {
                   }}
                   title={cafe.name}
                   description={cafe.alias}
-                />
+                  image={require('./cafeicon.png')}
+                >
+                  <MapView.Callout>
+                    <Text>Study Space Description Goes Here!</Text>
+                  </MapView.Callout>
+                </MapView.Marker>
               ))}
           </MapView>
         )}
