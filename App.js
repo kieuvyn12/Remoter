@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View } from 'react-native';
+import { Button } from 'react-native-elements';
 import { Permissions, Location, MapView } from 'expo';
 import { YELPTOKEN } from './secrets';
 
@@ -115,8 +116,10 @@ export default class HelloWorldApp extends Component {
         {this.state.currentCoordinates.latitude && (
           <Button
             onPress={this.getCafesFromAPI}
-            title="Click Here To See Cafes Near You"
-            accessibilityLabel="Click Here To See Cafes Near You"
+            title="Find Remote Workplaces Near Me"
+            type="outline"
+            raised={true}
+            accessibilityLabel="Click Here To See Remote Workplaces Near You"
           />
         )}
 
@@ -129,7 +132,7 @@ export default class HelloWorldApp extends Component {
             );
           })
         ) : (
-          <Text>find some cafes</Text>
+          <Text>Click above to get productive!</Text>
         )}
       </View>
     );
