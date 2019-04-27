@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { Button, Header } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import { Permissions, Location, MapView } from 'expo';
 import { YELPTOKEN } from './secrets';
 import ListItem from './ListItem';
@@ -75,18 +75,7 @@ export default class MainPage extends Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Header
-          statusBarProps={{ barStyle: 'light-content' }}
-          barStyle="light-content" // or directly
-          leftComponent={{ text: 'LEFT', style: { color: '#fff' } }}
-          centerComponent={{ text: 'MY TITLE', style: { color: '#fff' } }}
-          containerStyle={{
-            backgroundColor: '#3D6DCC',
-            justifyContent: 'space-around',
-          }}
-          rightComponent={{ icon: 'home', style: { color: '#fff' } }}
-        />
-        <Text>Hello, world hi!</Text>
+        <Text>Remote Spots Near You: </Text>
         {this.state.locationResult === null ? (
           <Text>Finding your current location...</Text>
         ) : this.state.hasLocationPermissions === false ? (
@@ -120,7 +109,13 @@ export default class MainPage extends Component {
                   image={require('./cafeicon.png')}
                 >
                   <MapView.Callout>
-                    <Text>Study Space Description Goes Here!</Text>
+                    <Text>Name: {cafe.name}</Text>
+
+                    <Text>
+                      {cafe.is_closed ? 'Currently: open' : 'Currently: closed'}
+                    </Text>
+
+                    <Text>Distance: {Math.floor(cafe.distance)} m away</Text>
                   </MapView.Callout>
                 </MapView.Marker>
               ))}
