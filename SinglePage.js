@@ -21,9 +21,7 @@ export default class HomeScreen extends Component {
         },
       });
       let responseJson = await response.json();
-      console.log('responseJson: ', responseJson);
       this.setState({ selectedCafe: responseJson });
-      console.log('selected cafe: ', this.state.selectedCafe);
       return responseJson;
     } catch (error) {
       console.error(error);
