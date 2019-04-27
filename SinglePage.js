@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
 import { YELPTOKEN } from './secrets';
+import styles from './styles';
 
 export default class HomeScreen extends Component {
   constructor(props) {

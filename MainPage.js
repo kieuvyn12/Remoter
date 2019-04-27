@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements';
 import { Permissions, Location, MapView } from 'expo';
 import { YELPTOKEN } from './secrets';
 import ListItem from './ListItem';
+import styles from './styles';
 
 export default class MainPage extends Component {
   constructor(props) {
@@ -75,13 +76,15 @@ export default class MainPage extends Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Remote Spots Near You: </Text>
+        <Text style={styles.paragraph}>Remote Spots Near You: </Text>
         {this.state.locationResult === null ? (
-          <Text>Finding your current location...</Text>
+          <Text style={styles.paragraph}>Finding your current location...</Text>
         ) : this.state.hasLocationPermissions === false ? (
-          <Text>Location permissions are not granted.</Text>
+          <Text style={styles.paragraph}>
+            Location permissions are not granted.
+          </Text>
         ) : this.state.mapRegion === null ? (
-          <Text>Map region doesn't exist.</Text>
+          <Text style={styles.paragraph}>Map region doesn't exist.</Text>
         ) : (
           <MapView
             style={{ alignSelf: 'stretch', height: 400 }}
@@ -109,21 +112,20 @@ export default class MainPage extends Component {
                   image={require('./cafeicon.png')}
                 >
                   <MapView.Callout>
-                    <Text>Name: {cafe.name}</Text>
+                    <Text style={styles.paragraph}>Name: {cafe.name}</Text>
 
-                    <Text>
+                    <Text style={styles.paragraph}>
                       {cafe.is_closed ? 'Currently: open' : 'Currently: closed'}
                     </Text>
 
-                    <Text>Distance: {Math.floor(cafe.distance)} m away</Text>
+                    <Text style={styles.paragraph}>
+                      Distance: {Math.floor(cafe.distance)} m away
+                    </Text>
                   </MapView.Callout>
                 </MapView.Marker>
               ))}
           </MapView>
         )}
-
-        <Text>Latitude: {this.state.currentCoordinates.latitude}</Text>
-        <Text>Longitude: {this.state.currentCoordinates.longitude}</Text>
         {this.state.currentCoordinates.latitude && (
           <Button
             onPress={this.getCafesFromAPI}
@@ -143,7 +145,7 @@ export default class MainPage extends Component {
             />
           ))
         ) : (
-          <Text>Click above to get productive!</Text>
+          <Text style={styles.paragraph}>Click above to get productive!</Text>
         )}
       </View>
     );

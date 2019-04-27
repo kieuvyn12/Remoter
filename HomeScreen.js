@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { ThemeProvider, Button, Overlay } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import styles from './styles';
 
 export default class HomeScreen extends Component {
   constructor() {
@@ -19,8 +20,8 @@ export default class HomeScreen extends Component {
     return (
       <ThemeProvider>
         <Overlay isVisible={this.state.isVisible}>
-          <View>
-            <Text>Welcome to Remoter!</Text>
+          <View style={styles.container}>
+            <Text style={styles.paragraph}>Welcome to Remoter!</Text>
             <Button
               onPress={this.onPress}
               title="I want to find somewhere to work today!"
