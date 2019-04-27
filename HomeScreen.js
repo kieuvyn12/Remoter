@@ -30,6 +30,12 @@ export default class HomeScreen extends Component {
           </View>
         </Overlay>
         <Text>Remoter Home</Text>
+        <Button
+          onPress={this.onPress}
+          title="I want to find somewhere to work today!"
+          type="outline"
+          raised={true}
+        />
       </ThemeProvider>
     );
   }
