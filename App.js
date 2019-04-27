@@ -8,10 +8,25 @@ import ListItem from './ListItem';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 const MainStackNavigator = createStackNavigator({
-  HomeScreen,
-  MainPage,
+  HomeScreen: {
+    screen: HomeScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Home',
+    }),
+  },
+  MainPage: {
+    screen: MainPage,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Cafes',
+    }),
+  },
   ListItem,
-  SinglePage,
+  SinglePage: {
+    screen: SinglePage,
+    navigationOptions: ({ navigation }) => ({
+      title: navigation.getParam('cafe'),
+    }),
+  },
 });
 
 const NavigationApp = createAppContainer(MainStackNavigator);
