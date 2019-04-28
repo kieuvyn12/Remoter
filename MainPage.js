@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { Button, Divider } from 'react-native-elements';
 import { Permissions, Location, MapView } from 'expo';
 import { YELPTOKEN } from './secrets';
-import ListItem from './ListItem';
+import List from './List';
 import styles from './styles';
 
 export default class MainPage extends Component {
@@ -141,11 +141,7 @@ export default class MainPage extends Component {
 
         {this.state.cafes.length > 0 &&
           this.state.cafes.map(cafe => (
-            <ListItem
-              prop={cafe}
-              key={cafe.id}
-              navigate={this.props.navigation}
-            />
+            <List prop={cafe} key={cafe.id} navigate={this.props.navigation} />
           ))}
       </View>
     );

@@ -4,7 +4,7 @@ import { Button, Header } from 'react-native-elements';
 import HomeScreen from './HomeScreen';
 import MainPage from './MainPage';
 import SinglePage from './SinglePage';
-import ListItem from './ListItem';
+import List from './List';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 const MainStackNavigator = createStackNavigator(
@@ -21,7 +21,7 @@ const MainStackNavigator = createStackNavigator(
         title: 'Cafes',
       }),
     },
-    ListItem,
+    List,
     SinglePage: {
       screen: SinglePage,
       navigationOptions: ({ navigation }) => ({
