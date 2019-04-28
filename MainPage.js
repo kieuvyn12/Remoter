@@ -42,8 +42,9 @@ export default class MainPage extends Component {
         mapRegion: {
           latitude: location.coords.latitude,
           longitude: location.coords.longitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitudeDelta: 0.03,
+          // latitudeDelta: 0.0922,
+          longitudeDelta: 0.03,
         },
       });
       return Location.getCurrentPositionAsync({ enableHighAccuracy: true });
