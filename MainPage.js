@@ -117,15 +117,9 @@ export default class MainPage extends Component {
                     image={require('./cafeicon.png')}
                   >
                     <MapView.Callout>
-                      <Text style={styles.paragraph}>Name: {cafe.name}</Text>
+                      <Text style={styles.popOut}>Name: {cafe.name}</Text>
 
-                      <Text style={styles.paragraph}>
-                        {cafe.is_closed
-                          ? 'Currently: open'
-                          : 'Currently: closed'}
-                      </Text>
-
-                      <Text style={styles.paragraph}>
+                      <Text style={styles.popOut}>
                         Distance: {Math.floor(cafe.distance)} m away
                       </Text>
                     </MapView.Callout>

@@ -20,6 +20,10 @@ const styles = StyleSheet.create({
     fontSize: 12,
     width: 350,
   },
+  popOut: {
+    margin: 10,
+    fontSize: 14,
+  },
 });
 
 export default styles;
