@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     paddingTop: Constants.statusBarHeight,
-    padding: 8,
   },
   paragraph: {
     margin: 24,
