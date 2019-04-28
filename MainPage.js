@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
 import { Button, Divider } from 'react-native-elements';
 import { Permissions, Location, MapView } from 'expo';
 import { YELPTOKEN } from './secrets';
@@ -75,75 +75,87 @@ export default class MainPage extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={styles.paragraph}>Remote Spots Near You: </Text>
-        {this.state.locationResult === null ? (
-          <Text style={styles.paragraph}>Finding your current location...</Text>
-        ) : this.state.hasLocationPermissions === false ? (
-          <Text style={styles.paragraph}>
-            Location permissions are not granted.
-          </Text>
-        ) : this.state.mapRegion === null ? (
-          <Text style={styles.paragraph}>Map region doesn't exist.</Text>
-        ) : (
-          <MapView
-            style={{ alignSelf: 'stretch', height: 400 }}
-            region={this.state.mapRegion}
-          >
-            <MapView.Marker
-              coordinate={{
-                latitude: this.state.currentCoordinates.latitude,
-                longitude: this.state.currentCoordinates.longitude,
-              }}
-              title={'you are here!'}
-              description={'your location'}
+      <ScrollView>
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
+          <Text style={styles.paragraph}>Remote Spots Near You: </Text>
+          {this.state.locationResult === null ? (
+            <Text style={styles.paragraph}>
+              Finding your current location...
+            </Text>
+          ) : this.state.hasLocationPermissions === false ? (
+            <Text style={styles.paragraph}>
+              Location permissions are not granted.
+            </Text>
+          ) : this.state.mapRegion === null ? (
+            <Text style={styles.paragraph}>Map region doesn't exist.</Text>
+          ) : (
+            <MapView
+              style={{ alignSelf: 'stretch', height: 400 }}
+              region={this.state.mapRegion}
+            >
+              <MapView.Marker
+                coordinate={{
+                  latitude: this.state.currentCoordinates.latitude,
+                  longitude: this.state.currentCoordinates.longitude,
+                }}
+                title={'you are here!'}
+                description={'your location'}
+              />
+
+              {this.state.cafes.length > 0 &&
+                this.state.cafes.map(cafe => (
+                  <MapView.Marker
+                    key={cafe.id}
+                    coordinate={{
+                      latitude: cafe.coordinates.latitude,
+                      longitude: cafe.coordinates.longitude,
+                    }}
+                    title={cafe.name}
+                    description={cafe.alias}
+                    image={require('./cafeicon.png')}
+                  >
+                    <MapView.Callout>
+                      <Text style={styles.paragraph}>Name: {cafe.name}</Text>
+
+                      <Text style={styles.paragraph}>
+                        {cafe.is_closed
+                          ? 'Currently: open'
+                          : 'Currently: closed'}
+                      </Text>
+
+                      <Text style={styles.paragraph}>
+                        Distance: {Math.floor(cafe.distance)} m away
+                      </Text>
+                    </MapView.Callout>
+                  </MapView.Marker>
+                ))}
+            </MapView>
+          )}
+
+          <Divider style={{ height: 8 }} />
+
+          {this.state.currentCoordinates.latitude && (
+            <Button
+              onPress={this.getCafesFromAPI}
+              title="Find Remote Workplaces Near Me"
+              type="outline"
+              raised={true}
+              accessibilityLabel="Click Here To See Remote Workplaces Near You"
             />
+          )}
 
-            {this.state.cafes.length > 0 &&
-              this.state.cafes.map(cafe => (
-                <MapView.Marker
-                  key={cafe.id}
-                  coordinate={{
-                    latitude: cafe.coordinates.latitude,
-                    longitude: cafe.coordinates.longitude,
-                  }}
-                  title={cafe.name}
-                  description={cafe.alias}
-                  image={require('./cafeicon.png')}
-                >
-                  <MapView.Callout>
-                    <Text style={styles.paragraph}>Name: {cafe.name}</Text>
-
-                    <Text style={styles.paragraph}>
-                      {cafe.is_closed ? 'Currently: open' : 'Currently: closed'}
-                    </Text>
-
-                    <Text style={styles.paragraph}>
-                      Distance: {Math.floor(cafe.distance)} m away
-                    </Text>
-                  </MapView.Callout>
-                </MapView.Marker>
-              ))}
-          </MapView>
-        )}
-
-        <Divider style={{ height: 8 }} />
-
-        {this.state.currentCoordinates.latitude && (
-          <Button
-            onPress={this.getCafesFromAPI}
-            title="Find Remote Workplaces Near Me"
-            type="outline"
-            raised={true}
-            accessibilityLabel="Click Here To See Remote Workplaces Near You"
-          />
-        )}
-
-        {this.state.cafes.length > 0 &&
-          this.state.cafes.map(cafe => (
-            <List prop={cafe} key={cafe.id} navigate={this.props.navigation} />
-          ))}
-      </View>
+          {this.state.cafes.length > 0 &&
+            this.state.cafes.map(cafe => (
+              <List
+                prop={cafe}
+                key={cafe.id}
+                navigate={this.props.navigation}
+              />
+            ))}
+        </View>
+      </ScrollView>
     );
   }
 }

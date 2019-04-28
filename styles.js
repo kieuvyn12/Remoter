@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   list: {
     margin: 3,
     fontSize: 12,
-    width: 300,
+    width: 350,
   },
 });
 
