@@ -22,7 +22,7 @@ export default class List extends Component {
         tension={100}
         activeScale={0.95}
         linearGradientProps={{
-          colors: ['#FF9800', '#F44336'],
+          colors: ['#D6C8B8', '#938071'],
           start: [1, 0],
           end: [0.2, 0],
         }}
