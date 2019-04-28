@@ -21,12 +21,29 @@ export default class HomeScreen extends Component {
         <Overlay isVisible={this.state.isVisible}>
           <View style={styles.container}>
             <Text style={styles.paragraph}>Welcome to Remoter!</Text>
-            <Button
-              onPress={this.onPress}
-              title="Enter the site!"
-              type="outline"
-              raised={true}
-            />
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'row',
+                justifyContent: 'center',
+              }}
+            >
+              <Button
+                buttonStyle={{
+                  borderWidth: 5,
+                  borderColor: 'lightgrey',
+                  borderRadius: 20,
+                }}
+                onPress={this.onPress}
+                title="Enter the site!"
+                type="outline"
+                raised={true}
+                containerStyle={{
+                  height: 50,
+                  width: 150,
+                }}
+              />
+            </View>
           </View>
         </Overlay>
         <Text>Remoter Home</Text>
