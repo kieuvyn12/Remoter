@@ -30,6 +30,7 @@ export default class HomeScreen extends Component {
               }}
             >
               <Text style={styles.paragraph}>Welcome to Remoter!</Text>
+
               <View
                 style={{
                   flex: 1,
