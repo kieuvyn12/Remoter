@@ -38,8 +38,8 @@ export default class List extends Component {
         chevron
         containerStyle={{
           marginHorizontal: 16,
-          marginVertical: 8,
-          borderRadius: 8,
+          marginVertical: 5,
+          borderRadius: 5,
         }}
       />
     );

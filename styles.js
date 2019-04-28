@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   list: {
-    margin: 10,
+    margin: 3,
     fontSize: 12,
     width: 300,
   },
