@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Image } from 'react-native';
+import { Card, Button } from 'react-native-elements';
 import { YELPTOKEN } from './secrets';
 import styles from './styles';
 
@@ -35,17 +36,25 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <View>
-        <Text>Name: {this.props.navigation.getParam('cafe')}</Text>
         {this.state.selectedCafe && (
-          <View>
-            <Text>Url: {this.state.selectedCafe.url}</Text>
+          <Card
+            title={this.props.navigation.getParam('cafe')}
+            image={{ uri: this.state.selectedCafe.photos[0] }}
+          >
             <Text>Price: {this.state.selectedCafe.price}</Text>
             <Text>Rating: {this.state.selectedCafe.rating}</Text>
-            <Image
-              style={{ width: 500, height: 500 }}
-              source={{ uri: this.state.selectedCafe.photos[0] }}
+            <Button
+              backgroundColor="#03A9F4"
+              buttonStyle={{
+                borderRadius: 0,
+                marginLeft: 3,
+                marginTop: 3,
+                marginRight: 3,
+                marginBottom: 3,
+              }}
+              title="VIEW NOW"
             />
-          </View>
+          </Card>
         )}
       </View>
     );
