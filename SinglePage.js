@@ -41,8 +41,16 @@ export default class HomeScreen extends Component {
             title={this.props.navigation.getParam('cafe')}
             image={{ uri: this.state.selectedCafe.photos[0] }}
           >
+            <Text>
+              Currently:{' '}
+              {this.state.selectedCafe.hours[0].is_open_now ? 'open' : 'closed'}
+            </Text>
             <Text>Price: {this.state.selectedCafe.price}</Text>
             <Text>Rating: {this.state.selectedCafe.rating}</Text>
+            <Text>Phone: {this.state.selectedCafe.display_phone}</Text>
+            <Text>
+              Address: {this.state.selectedCafe.location.display_address}
+            </Text>
             <Button
               backgroundColor="#03A9F4"
               buttonStyle={{
