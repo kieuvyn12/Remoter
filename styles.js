@@ -16,6 +16,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  list: {
+    margin: 10,
+    fontSize: 12,
+  },
 });
 
 export default styles;

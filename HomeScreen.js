@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { ThemeProvider, Button, Overlay } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { ThemeProvider, Overlay, Button } from 'react-native-elements';
 import styles from './styles';
 
 export default class HomeScreen extends Component {
@@ -24,7 +23,7 @@ export default class HomeScreen extends Component {
             <Text style={styles.paragraph}>Welcome to Remoter!</Text>
             <Button
               onPress={this.onPress}
-              title="I want to find somewhere to work today!"
+              title="Enter the site!"
               type="outline"
               raised={true}
             />

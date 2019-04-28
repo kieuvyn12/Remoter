@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
+import styles from './styles';
 
 export default class ListItem extends Component {
   onPress = () => {
@@ -11,7 +12,7 @@ export default class ListItem extends Component {
 
   render() {
     return (
-      <View key={this.props.prop.id}>
+      <View key={this.props.prop.id} style={styles.list}>
         <Text onPress={this.onPress}>{this.props.prop.name}</Text>
       </View>
     );

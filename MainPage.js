@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, Divider } from 'react-native-elements';
 import { Permissions, Location, MapView } from 'expo';
 import { YELPTOKEN } from './secrets';
 import ListItem from './ListItem';
@@ -126,6 +126,9 @@ export default class MainPage extends Component {
               ))}
           </MapView>
         )}
+
+        <Divider style={{ height: 8 }} />
+
         {this.state.currentCoordinates.latitude && (
           <Button
             onPress={this.getCafesFromAPI}
@@ -136,17 +139,14 @@ export default class MainPage extends Component {
           />
         )}
 
-        {this.state.cafes.length > 0 ? (
+        {this.state.cafes.length > 0 &&
           this.state.cafes.map(cafe => (
             <ListItem
               prop={cafe}
               key={cafe.id}
               navigate={this.props.navigation}
             />
-          ))
-        ) : (
-          <Text style={styles.paragraph}>Click above to get productive!</Text>
-        )}
+          ))}
       </View>
     );
   }
