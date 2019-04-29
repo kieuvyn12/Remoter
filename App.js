@@ -18,7 +18,7 @@ const MainStackNavigator = createStackNavigator(
     MainPage: {
       screen: MainPage,
       navigationOptions: ({ navigation }) => ({
-        title: 'Cafes',
+        title: 'The Spots',
       }),
     },
     List,

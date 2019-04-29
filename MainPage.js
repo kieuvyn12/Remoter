@@ -80,7 +80,6 @@ export default class MainPage extends Component {
         <View
           style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
-          <Text style={styles.mainFonts}>Remote Spots Near You: </Text>
           {this.state.locationResult === null ? (
             <Text style={styles.mainFonts}>
               Finding your current location...
@@ -147,6 +146,10 @@ export default class MainPage extends Component {
                 width: 350,
               }}
             />
+          )}
+
+          {this.state.currentCoordinates.latitude && (
+            <Text style={styles.mainFonts}>Remote Spots Near You: </Text>
           )}
 
           {this.state.cafes.length > 0 &&
