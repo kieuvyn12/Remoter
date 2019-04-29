@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, Image } from 'react-native';
+import { View, Image, ActivityIndicator } from 'react-native';
 import { ThemeProvider, Overlay, Button } from 'react-native-elements';
-import { Constants } from 'expo';
 import styles from './styles';
 
 export default class HomeScreen extends Component {
@@ -40,6 +39,7 @@ export default class HomeScreen extends Component {
                   justifyContent: 'center',
                   paddingBottom: 100,
                 }}
+                PlaceHolderContent={<ActivityIndicator />}
               />
 
               <View

@@ -24,6 +24,11 @@ const styles = StyleSheet.create({
     margin: 10,
     fontSize: 14,
   },
+  mainFonts: {
+    margin: 10,
+    fontSize: 14,
+    textAlign: 'center',
+  },
 });
 
 export default styles;

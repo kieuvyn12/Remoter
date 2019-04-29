@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, Image } from 'react-native';
-import { Card, Button } from 'react-native-elements';
+import { Text, View, Image, ScrollView } from 'react-native';
+import { Card, Divider } from 'react-native-elements';
 import { YELPTOKEN } from './secrets';
-import styles from './styles';
 
 export default class HomeScreen extends Component {
   constructor(props) {
@@ -35,36 +34,59 @@ export default class HomeScreen extends Component {
 
   render() {
     return (
-      <View>
-        {this.state.selectedCafe && (
-          <Card
-            title={this.props.navigation.getParam('cafe')}
-            image={{ uri: this.state.selectedCafe.photos[0] }}
-          >
-            <Text>
-              Currently:{' '}
-              {this.state.selectedCafe.hours[0].is_open_now ? 'open' : 'closed'}
-            </Text>
-            <Text>Price: {this.state.selectedCafe.price}</Text>
-            <Text>Rating: {this.state.selectedCafe.rating}</Text>
-            <Text>Phone: {this.state.selectedCafe.display_phone}</Text>
-            <Text>
-              Address: {this.state.selectedCafe.location.display_address}
-            </Text>
-            <Button
-              backgroundColor="#03A9F4"
-              buttonStyle={{
-                borderRadius: 0,
-                marginLeft: 3,
-                marginTop: 3,
-                marginRight: 3,
-                marginBottom: 3,
-              }}
-              title="VIEW NOW"
-            />
-          </Card>
-        )}
-      </View>
+      <ScrollView>
+        <View>
+          {this.state.selectedCafe && (
+            <Card
+              title={this.props.navigation.getParam('cafe')}
+              image={{ uri: this.state.selectedCafe.photos[0] }}
+            >
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'row',
+                }}
+              >
+                <Image
+                  source={{ uri: this.state.selectedCafe.photos[1] }}
+                  style={{
+                    width: 175,
+                    height: 175,
+                  }}
+                />
+                <View
+                  style={{
+                    borderLeftWidth: 8,
+                    borderLeftColor: 'white',
+                  }}
+                />
+                <Image
+                  source={{ uri: this.state.selectedCafe.photos[2] }}
+                  style={{ width: 175, height: 175 }}
+                />
+                <Divider style={{ height: 10 }} />
+              </View>
+              <Text style={{ fontSize: 14, fontWeight: 'bold' }}>
+                Useful Information:
+              </Text>
+              <Text>
+                Currently:{' '}
+                {this.state.selectedCafe.hours[0].is_open_now
+                  ? 'open'
+                  : 'closed'}
+              </Text>
+              <Text>Price: {this.state.selectedCafe.price}</Text>
+              <Text>Rating: {this.state.selectedCafe.rating}</Text>
+              <Text>Phone: {this.state.selectedCafe.display_phone}</Text>
+              <Text>
+                Address: {this.state.selectedCafe.location.display_address}
+              </Text>
+            </Card>
+          )}
+        </View>
+      </ScrollView>
     );
   }
 }

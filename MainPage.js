@@ -80,17 +80,17 @@ export default class MainPage extends Component {
         <View
           style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
-          <Text style={styles.paragraph}>Remote Spots Near You: </Text>
+          <Text style={styles.mainFonts}>Remote Spots Near You: </Text>
           {this.state.locationResult === null ? (
-            <Text style={styles.paragraph}>
+            <Text style={styles.mainFonts}>
               Finding your current location...
             </Text>
           ) : this.state.hasLocationPermissions === false ? (
-            <Text style={styles.paragraph}>
+            <Text style={styles.mainFonts}>
               Location permissions are not granted.
             </Text>
           ) : this.state.mapRegion === null ? (
-            <Text style={styles.paragraph}>Map region doesn't exist.</Text>
+            <Text style={styles.mainFonts}>Map region doesn't exist.</Text>
           ) : (
             <MapView
               style={{ alignSelf: 'stretch', height: 400 }}
@@ -133,11 +133,19 @@ export default class MainPage extends Component {
 
           {this.state.currentCoordinates.latitude && (
             <Button
+              buttonStyle={{
+                borderColor: '#4b4343',
+                borderRadius: 20,
+              }}
               onPress={this.getCafesFromAPI}
               title="Find Remote Workplaces Near Me"
               type="outline"
-              raised={true}
+              titleStyle={{ color: '#4b4343' }}
               accessibilityLabel="Click Here To See Remote Workplaces Near You"
+              containerStyle={{
+                height: 50,
+                width: 350,
+              }}
             />
           )}
 
