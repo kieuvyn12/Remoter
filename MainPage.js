@@ -81,18 +81,24 @@ export default class MainPage extends Component {
           style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
           {this.state.locationResult === null ? (
-            <Image
-              source={require('./location.png')}
+            <View
               style={{
                 flex: 1,
-                alignItems: 'stretch',
-                width: 300,
-                height: 200,
+                flexDirection: 'column',
                 justifyContent: 'center',
-                paddingBottom: 100,
+                alignItems: 'stretch',
+                paddingTop: 200,
               }}
-              PlaceHolderContent={<ActivityIndicator />}
-            />
+            >
+              <Image
+                source={require('./location.png')}
+                style={{
+                  width: 300,
+                  height: 200,
+                }}
+                PlaceHolderContent={<ActivityIndicator />}
+              />
+            </View>
           ) : this.state.hasLocationPermissions === false ? (
             <Text style={styles.mainFonts}>
               Location permissions are not granted.
@@ -157,7 +163,7 @@ export default class MainPage extends Component {
             />
           )}
 
-          {this.state.currentCoordinates.latitude && (
+          {this.state.cafes.length > 0 && (
             <Text style={styles.mainFonts}>
               Spots To Work Remote Near You:{' '}
             </Text>
