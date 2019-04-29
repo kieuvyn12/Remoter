@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, ActivityIndicator, Image } from 'react-native';
 import { Button, Divider } from 'react-native-elements';
 import { Permissions, Location, MapView } from 'expo';
 import { YELPTOKEN } from './secrets';
@@ -81,9 +81,18 @@ export default class MainPage extends Component {
           style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
         >
           {this.state.locationResult === null ? (
-            <Text style={styles.mainFonts}>
-              Finding your current location...
-            </Text>
+            <Image
+              source={require('./location.png')}
+              style={{
+                flex: 1,
+                alignItems: 'stretch',
+                width: 300,
+                height: 200,
+                justifyContent: 'center',
+                paddingBottom: 100,
+              }}
+              PlaceHolderContent={<ActivityIndicator />}
+            />
           ) : this.state.hasLocationPermissions === false ? (
             <Text style={styles.mainFonts}>
               Location permissions are not granted.
@@ -149,7 +158,9 @@ export default class MainPage extends Component {
           )}
 
           {this.state.currentCoordinates.latitude && (
-            <Text style={styles.mainFonts}>Remote Spots Near You: </Text>
+            <Text style={styles.mainFonts}>
+              Spots To Work Remote Near You:{' '}
+            </Text>
           )}
 
           {this.state.cafes.length > 0 &&
