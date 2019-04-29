@@ -51,14 +51,13 @@ export default class HomeScreen extends Component {
               >
                 <Button
                   buttonStyle={{
-                    borderWidth: 5,
-                    borderColor: 'lightgrey',
+                    borderColor: '#4b4343',
                     borderRadius: 20,
                   }}
                   onPress={this.onPress}
-                  title="Enter the site!"
+                  title="Enter"
                   type="outline"
-                  raised={true}
+                  titleStyle={{ color: '#4b4343' }}
                   containerStyle={{
                     height: 50,
                     width: 150,
