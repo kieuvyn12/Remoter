@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import { ThemeProvider, Overlay, Button } from 'react-native-elements';
 import { Constants } from 'expo';
 import styles from './styles';
@@ -23,13 +23,24 @@ export default class HomeScreen extends Component {
           <View style={styles.container}>
             <View
               style={{
+                paddingTop: 80,
                 flex: 1,
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'stretch',
               }}
             >
-              <Text style={styles.paragraph}>Welcome to Remoter!</Text>
+              <Image
+                source={require('./logo.png')}
+                style={{
+                  flex: 1,
+                  alignItems: 'stretch',
+                  width: 300,
+                  height: 200,
+                  justifyContent: 'center',
+                  paddingBottom: 100,
+                }}
+              />
 
               <View
                 style={{
